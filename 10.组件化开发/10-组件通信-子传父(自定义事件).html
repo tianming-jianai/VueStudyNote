@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<!-- 子组件中的事件想让父组件知道，这个更常见 -->
+		<div id="app">
+			<cpn v-on:item-click="cpnClick"></cpn>
+		</div>
+		
+		<!-- 子组件模板 -->
+		<template id="cpn">
+			<div>
+				<button :id="item.id" v-for="(item,index) of categories" @click="btnClick(item,index)">{{item.name}}</button>
+			</div>
+		</template>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const cpn = {
+				template: '#cpn',
+				data(){
+					return {
+						categories:[
+							{id:'aaa',name:'热门推荐'},
+							{id:'bbb',name:'手机数码'},
+							{id:'ccc',name:'家用电器'},
+							{id:'ddd',name:'手机办公'},
+						]
+					}
+				},
+				methods:{
+					btnClick(item,index){
+						console.log(item);
+						this.$emit('item-click',item,index);
+					}
+				}
+			}
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello',
+					
+				},
+				components:{
+					cpn
+				},
+				methods:{
+					cpnClick(index,item){
+						console.log(index,"----",item);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<img title="图片" style="background-color: aqua;width: 200px;height: 200px;" v-bind:src="imgUrl" alt="ccccc" />
+			<a v-bind:href="atag">百度一下</a>
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					imgUrl:'https://www.baidu.com/img/superlogo_c4d7df0a003d3db9b65e9ef0fe6da1ec.png?where=super',
+					atag:'https://www.baidu.com'
+				}
+			});
+		</script>
+	</body>
+</html>

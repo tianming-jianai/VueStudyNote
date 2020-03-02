@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<template id="cpn">
+			<div>我是子组件</div>
+		</template>
+		<div id="app">
+			<cpn></cpn>
+			<cpn></cpn>
+			<cpn ref="aaa"></cpn>
+			<button @click="btnClick">按钮</button>
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const cpn = {
+				template: "#cpn",
+				data() {
+					return {
+						name: "我是子组件name"
+					}
+				},
+				methods: {
+					showMessage() {
+						console.log("showMessage");
+					}
+				}
+			}
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: "abc"
+				},
+				methods: {
+					btnClick() {
+						// 1.$children
+						// console.log(this.$children);
+						// this.$children[0].showMessage();
+						
+						// 2.$refs 队形类型，默认了是一个空的对象 ref="aaa"
+						console.log(this.$refs.aaa.name);
+						
+						/*
+							第二种方式开发时用的较多，
+							第一种只是要全局扫描的时候才用到
+						*/
+					}
+				},
+				components: {
+					cpn
+				}
+			});
+		</script>
+	</body>
+</html>

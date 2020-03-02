@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			table {
+				border: 1px solid #e9e9e9;
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+			
+			th,
+			td {
+				padding: 8px 16px;
+				border: 1px solid #E9E9E9;
+				text-align: left;
+			}
+			
+			th {
+				background-color: #f7f7f7;
+				color: #5c6b77;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div v-if="books.length>0">
+				<table>
+					<thead>
+						<th>编号</th>
+						<th>书籍名称</th>
+						<th>出版日期</th>
+						<th>价格</th>
+						<th>购买数量</th>
+						<th>操作</th>
+					</thead>
+					<tbody>
+						<tr v-for="(item,index) of books">
+							<td>{{item.id}}</td>
+							<td>{{item.name}}</td>
+							<td>{{item.date}}</td>
+							<td>{{item.price | showPrice}}</td>
+							<td><button @click="decr(index)" v-bind:disabled="item.count<=1">-</button>{{item.count}} <button @click="incr(index)" v-bind:disabled="item.count>=10">+</button></td>
+							<td><button @click="remove(index)">移除</button></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td><h2>总价格：</h2></td>
+							<td><h2>{{totalPrice | showPrice}}</h2></td>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+			<div v-else>购物车为空</div>
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello',
+					books:[
+						{
+								id: 1,
+								name: '叶辛眼中的上海',
+								date: '2006-7',
+								price: 32.00,
+								count: 1
+							},
+							{
+								id: 2,
+								name: '电脑爱好者',
+								date: '2019-12',
+								price: 25.00,
+								count: 1
+							},
+							{
+								id: 3,
+								name: '考研5500',
+								date: '2019-11',
+								price: 18.00,
+								count: 1
+							},
+							{
+								id: 4,
+								name: '张宇30讲',
+								date: '2019-12',
+								price: 30.00,
+								count: 1
+							}
+					],
+				},
+				filters:{
+					showPrice(price){
+						return '￥'+price.toFixed(2);
+					}
+				},
+				computed:{
+					totalPrice(){
+						return this.books.reduce((prev,book)=>prev+book.price*book.count,0);
+					}
+				},
+				methods:{
+					decr(i){
+						return this.books[i].count--;
+					},
+					incr(i){
+						return this.books[i].count++;
+					},
+					remove(i){
+						this.books.splice(i,1)
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

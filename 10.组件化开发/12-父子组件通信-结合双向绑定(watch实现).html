@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<template id="cpn">
+			<div>
+				<h2>父组件props:{{bnumber}}</h2>
+				<h2>子组件data:{{cnumber}}</h2>
+				子组件输入框<input type="text" :value="cnumber" @input="cnumberInput">
+				<hr>
+				<h2>父组件props:{{bnumber2}}</h2>
+				<h2>子组件data:{{cnumber2}}</h2>
+				子组件输入框<input type="text" :value="cnumber2" @input="cnumber2Input">
+			</div>
+		</template>
+		<div id="app">
+			<h1>父组件anumber:{{anumber}}</h1>
+			<h1>父组件anumber2:{{anumber2}}</h1>
+			<hr>
+			<cpn :bnumber="anumber" :bnumber2="anumber2" @cnumberchange="cnumberChange" @cnumber2change="cnumber2Change" />
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const cpn = {
+				template: '#cpn',
+				props: {
+					bnumber: {
+						type: Number,
+						default: 100
+					},
+					bnumber2: {
+						type: Number,
+						required: true,
+						default: 200,
+						validator(value) {
+							console.log("validator---", value);
+							return value;
+						}
+					}
+				},
+				data() {
+					return {
+						cnumber: this.bnumber,
+						cnumber2: this.bnumber2
+					}
+				},
+				methods: {
+					cnumberInput(event) {
+						this.cnumber = event.target.value;
+						this.$emit("cnumberchange", this.cnumber);
+					},
+					cnumber2Input(event) {
+						this.cnumber2 = event.target.value;
+						this.$emit("cnumber2change", this.cnumber2);
+					}
+				},
+				watch: {
+					cnumber(newValue, oldValue) {
+						this.cnumber2 = newValue * 100;
+						this.$emit("cnumberchange", newValue);
+					},
+					cnumber2(newValue) {
+						this.cnumber = this.cnumber2 / 100;
+						this.$emit("cnumber2change", newValue);
+					}
+				}
+			}
+			const app = new Vue({
+				el: '#app',
+				data: {
+					anumber: 1,
+					anumber2: 2
+				},
+				components: {
+					cpn
+				},
+				methods: {
+					cnumberChange(num) { //这里的参数是String类型，要转换成Number类型
+						console.log(num);
+						// this.anumber=num*1;
+						this.anumber = parseFloat(num);
+					},
+					cnumber2Change(num) {
+						this.anumber2 = num * 1;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">{{message}}</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//属性初始化简写和方法的简写：
+			// 1.属性的简写 
+			// ES6之前
+			let name = 'why'
+			let age = 18
+			let obj = {
+				name: name,
+				age: age
+			}
+			console.log(obj);
+			//ES6之后
+			let obj2 = {
+				name,
+				age
+			}
+			console.log(obj2);
+
+			//2.方法的简写
+			//ES6之前
+			let obj3 = {
+				test: function() {
+					console.log('obj3的test函数');
+				}
+			}
+			obj3.test()
+			//ES6之后
+			let obj4 = {
+				test() {
+					console.log('obj4的test函数');
+				}
+			}
+			obj4.test()
+		</script>
+	</body>
+</html>

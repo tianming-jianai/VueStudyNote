@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">{{fullName}}</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					firstName: 'kobe',
+					lastName: 'bryant',
+					message: 'hello'
+				},
+				computed: {
+					fullName: {
+						get: function() {
+							return this.firstName + ' ' + this.lastName;
+						},
+						// 一般情况下，我们不希望计算属性有set方法，计算属性只需要获取其计算结果即可
+						// 那么计算属性就是只读属性
+						set: function(newValue) {
+							console.log("-----", newValue)
+							let str = newValue.split(' ');
+							this.firstName = str[0];
+							this.lastName = str[1];
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

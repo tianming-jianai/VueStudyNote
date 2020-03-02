@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../vue.js"></script>
+	</head>
+	<body>
+		<div id="app">{{message}}</div>
+		<script>
+			//编程范式：声明式（以往操作DOM的方式为：命令式）
+			const app = new Vue({
+				el: '#app', //把标签交给Vue实例管理
+				data: {
+					message: '你好，狗子'
+				}
+			});
+		</script>
+	</body>
+</html>

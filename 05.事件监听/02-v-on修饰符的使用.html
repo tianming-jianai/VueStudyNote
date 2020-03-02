@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 1、 .stop的使用，阻止冒泡事件 -->
+			<div @click="divClick">
+				aaaaa
+				<button @click.stop="btnClick">按钮</button>
+			</div>
+			<br />
+			<!-- 2、 .prevent阻止默认事件,可以执行自定义事件 -->
+			<form action="baidu" method="post">
+				<input type="submit" value="提交" @click.prevent="submitEvent()" />
+			</form>
+			<!-- 3、 @keyup.enter监听键盘键帽点击 -->
+			<input type="text" @keyup.enter="keyUp" />
+			<!-- 4、.once只能点击一次 -->
+			<input type="button" value="只能点击一次" @click.once="onceClick" />
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello'
+				},
+				methods: {
+					btnClick() {
+						console.log('btnClick');
+					},
+					divClick() {
+						console.log('divClick');
+					},
+					submitEvent() {
+						console.log('submitEvent');
+					},
+					keyUp() {
+						console.log('keyUp');
+					},
+					onceClick() {
+						console.log('onceClick');
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

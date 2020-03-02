@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>全局组件和局部组件</title>
+	</head>
+	<body>
+		<div id="app">
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+		</div>
+		<div id="app2">
+			<my-cpn></my-cpn>
+			<my-cpn></my-cpn>
+		</div>
+		<script type="text/javascript" src="../vue.js"></script>
+		<script type="text/javascript">
+			/*
+		做成组件之后方便管理
+		可移植性好，那个地方使用，那个地方写标签就行
+		可以封装之后，其他项目也能使用
+
+		 */
+			//1.创建组件构造器对象
+			const cpnConstructor = Vue.extend({
+				template: `<div><h2>这是标题</h2>
+			<p>这是内容</p>
+			</div>`
+
+			});
+			//2.注册组件
+			//全局组件，意味着可以在多个Vue实例下使用
+			Vue.component('my-cpn',cpnConstructor);
+
+			//开发的时候一般只创建一个Vue实例，组件用的最多的是局部组件
+			const app = new Vue({
+				el: '#app',
+				data: {
+
+				},
+				components: {
+					// "my-cpn": cpnConstructor
+				}
+			});
+			const app2 = new Vue({
+				el:'#app2',
+				data:{
+					
+				}
+			});
+		</script>
+	</body>
+</html>

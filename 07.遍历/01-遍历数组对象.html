@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 1.在遍历的过程中，没有使用索引值（下标值） -->
+			<ul>
+				<li v-for="item in message">{{item}}</li>
+			</ul>
+			<!-- 2.在遍历的过程中，获取索引值 -->
+			<ul>
+				<li v-for="(item, index) in message">{{index+1}} - {{item}}</li>
+			</ul>
+			<!-- 1.在遍历对象过程中 -->
+			<ul>
+				<li v-for="item in info">{{item}}</li>
+			</ul>
+			<!-- 2.获取key和value -->
+			<ul>
+				<li v-for="(value, key) in info">{{key}} - {{value}}</li>
+			</ul>
+			<!-- 3.获取key和value index -->
+			<ul>
+				<li v-for="(value, key, index) in info">{{index}} - {{key}} - {{value}}</li>
+			</ul>
+		</div>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: ['kobe', 'james', 'kd'],
+					info: {
+						name: 'kobe',
+						age: 18,
+						skill: ['basketball', 'baseball', 'pingpang']
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			table {
+				border: 1px solid #e9e9e9;
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+			
+			th,
+			td {
+				padding: 8px 16px;
+				border: 1px solid #E9E9E9;
+				text-align: left;
+			}
+			
+			th {
+				background-color: #f7f7f7;
+				color: #5c6b77;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div v-if="books.length > 0">
+				<table>
+					<thead>
+						<th></th>
+						<th>书籍名称</th>
+						<th>出版日期</th>
+						<th>价格</th>
+						<th>购买数量</th>
+						<th>操作</th>
+					</thead>
+					<tbody>
+						<tr v-for="(book, index) in books">
+							<td>{{book.id}}</td>
+							<td>{{book.name}}</td>
+							<td>{{book.date}}</td>
+							<td>{{book.price | getFinalPrice}}</td>
+							<td><button @click="decre(index)" :disabled="book.count<=1">-</button>{{book.count}}<button @click="incre(index)">+</button></td>
+							<td><button @click="remove(index)">移除</button></td>
+						</tr>
+					</tbody>
+				</table>
+				总价：{{totalPrice | getFinalPrice}}
+			</div>
+			<div v-else>
+				购物车为空
+			</div>
+
+		</div>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./main.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn></cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<h2>{{title}}</h2>
+				<p>我是内容：templete</p>
+			</div>
+		</template>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//1.注册一个全局组件
+			Vue.component('cpn', {
+				template: `#cpn`,
+				data() {
+					return {
+						title: '我是标题哪'
+					}
+				}
+			})
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello',
+
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+		<!-- 	v-model其实是一个语法糖，它的背后本质上是包含两个操作：
+				1.v-bind绑定一个value属性
+				2.v-on指令给当前元素绑定input事件 -->
+			v-model<input type="text" v-model="message">{{message}}<br>
+			等同于
+			<input type="text" name="" id="" :value="message" @input="message = $event.target.value" />{{message}}<br>
+			<hr/>
+			<!-- 2.用法二：绑定textarea元素 -->
+			textarea<textarea v-model="message"></textarea><br>
+			<p>输入的内容是{{message}}</p>
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello'
+				},
+				methods:{
+					valueChange(event){
+						this.message=event.target.value;
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

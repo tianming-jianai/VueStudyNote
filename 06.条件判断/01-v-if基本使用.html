@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2 v-if="isShow">{{message}}</h2>
+			<h2 v-else>isShow为false时，显示我</h2>
+			<hr />
+			<div id="score">
+				<!-- 当条件判断过多时，不建议在标签里面写 -->
+				<p v-if="score>=90">优秀</p>
+				<p v-else-if="score>=80">良好</p>
+				<p v-else-if="score>=60">及格</p>
+				<p v-else>不及格</p>
+			</div>
+			<h1>{{result}}</h1>
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello',
+					isShow: false,
+					score: 80
+				},
+				computed: {
+					result() {
+						let showMessage = ''
+						if (this.score >= 90) {
+							showMessage = '优秀'
+						} else if (this.score >= 80) {
+							showMessage = '良好'
+						} else if (this.score >= 60) {
+							showMessage = '及格'
+						} else {
+							showMessage = '不及格'
+						}
+						return showMessage
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			[v-cloak] {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 斗篷v-cloak:防止页面显示Mustache语法标签
+		 实际应用不使用这个：
+		 -->
+		<div id="app" v-cloak>
+			{{message}}
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//在Vue解析之前，div中有一个属性v-cloak
+			//在Vue解析之后，div中没有一个属性v-cloak
+			setTimeout(function() {
+				const app = new Vue({
+					el: '#app',
+					data: {
+						message: 'hello'
+					}
+				});
+			}, 1000);
+		</script>
+	</body>
+</html>

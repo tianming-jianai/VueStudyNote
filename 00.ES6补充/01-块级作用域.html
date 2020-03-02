@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<button>按钮1</button>
+			<button>按钮2</button>
+			<button>按钮3</button>
+			<button>按钮4</button>
+			<button>按钮5</button>
+		</div>
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			
+			var func;
+			if(true){
+				let name='kobe'
+				func = function(){
+					console.log(name);
+				}
+			}
+			aa='james'
+			func()
+			console.log(aa);
+			//3.没有块级作用域引起的问题：for的块级
+			// 为什么闭包可以解决问题
+			var btns = document.getElementsByTagName('button');
+			for (var i = 0; i < btns.length; i++) {
+				(function(num) {
+					btns[num].addEventListener('click', function() {
+						console.log('第' + num + '个按钮被点击');
+					})
+				})(i)
+			}
+			
+			for (var i = 0; i < btns.length; i++) {
+				btns[i].addEventListener('click', function() {
+					console.log('第' + i + '个按钮被点击');
+				})
+			}
+		</script>
+	</body>
+</html>

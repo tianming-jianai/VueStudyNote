@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<div id="app">
+			1.checkbox单选框
+			<label for="license">
+				<input type="checkbox" id="license" v-model="isLicense" >同意协议
+			</label><br>
+			<button type="button" :disabled="!isLicense">下一步</button><br>
+			
+			2.checkbox多选框<br>
+			<label for="basketball"><input id="basketball" type="checkbox" value="篮球" v-model="hobbies">篮球</label>
+			<label for="pingpang"><input id="pingpang" type="checkbox" value="乒乓球" v-model="hobbies">乒乓球</label>
+			<label for="baseball"><input id="baseball" type="checkbox" value="棒球" v-model="hobbies">棒球</label>
+			<label for="score"><input id="score" type="checkbox" value="足球" v-model="hobbies">足球</label><br>
+			您的爱好是：{{hobbies}}
+		</div>	
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello',
+					isLicense: false,
+					hobbies:[]
+				}
+			});
+		</script>
+	</body>
+</html>
