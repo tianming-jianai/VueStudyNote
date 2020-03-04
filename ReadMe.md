@@ -9,3 +9,14 @@ From：www.520it.com
 <hr/>
 
 
+# VueStudyNote
+
+create a new repository from the command line
+echo "# Vue StudyNote" >> README.md
+git init
+git add README.md
+git config --global user.name ''
+git config --global user.email ''
+git commit -m "first commit"
+git remote add origin https://github.com/tianming.jianai/VueStudyNote.git
+git push -u origin master

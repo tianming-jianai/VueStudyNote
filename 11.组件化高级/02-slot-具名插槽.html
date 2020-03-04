@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn></cpn>
+			<hr>
+			<cpn><button>按钮</button><span>abc</span></cpn>
+			<hr>
+			<cpn><i slot="left">替换左边</i>其他</cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<div>我是子组件</div>
+				<slot name="left"><span>左边</span></slot>
+				<slot name="center"><span>中间</span></slot>
+				<slot name="right"><span>右边</span></slot>
+				<slot></slot>
+				<slot></slot>				
+			</div>
+		</template>
+		
+
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello'
+				},
+				components:{
+					cpn:{
+						template:"#cpn",
+						
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn></cpn>
+			<hr>
+			<!-- 目的是获取子组件中的pLanguage属性
+			2.5.x一下必须使用template -->
+			<cpn>
+				<template v-slot="slot">
+					<span>{{slot.data.join(" - ")}}</span>
+				</template>
+			</cpn>
+		</div>
+		<template id="cpn">
+			<div>
+				<!-- data这个名字时随便起的 -->
+				<slot :data="pLanguage">
+					<ul>
+						<li v-for="item in pLanguage">{{item}}</li>
+					</ul>
+				</slot>
+			</div>
+		</template>
+		<script src="../vue.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			const app = new Vue({
+				el: '#app',
+				data: {
+					message: 'hello'
+				},
+				components: {
+					cpn: {
+						template: "#cpn",
+						data() {
+							return {
+								pLanguage: ['111', '222', '333', '444'],
+								name: 'laravst'
+							}
+						}
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
