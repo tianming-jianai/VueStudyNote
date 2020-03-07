@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require("webpack")
+const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	entry: './src/main.js',
@@ -56,6 +57,9 @@ module.exports = {
 	},
 	plugins:[
 		new webpack.BannerPlugin('最终解释权归zsg所有'),
+		new htmlWebpackPlugin({
+			template:'index.html'
+		})
 	],
 	resolve: {
 		// 省略扩展名
