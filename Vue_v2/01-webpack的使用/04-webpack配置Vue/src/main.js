@@ -30,26 +30,7 @@ document.writeln("你好啊，天气很不错哦")
 // t.引入Vue
 import Vue from "vue"
 
-const App = {
-	template:`
-		<div>
-			<p>{{message}}</p>
-			<button @click="btnClick">按钮</button>
-			<h4>{{name}}</h4>
-		</div>
-	`,
-	data(){
-		return {
-			message: 'hello webpack',
-			name: '我是小明'
-		}
-	},
-	methods: {
-		btnClick() {
-			console.log("btnClick");
-		}
-	}
-}
+import App from "./vue/app.js" 
 
 const app = new Vue({
 	el: '#app',
