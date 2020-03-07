@@ -30,7 +30,9 @@ document.writeln("你好啊，天气很不错哦")
 // t.引入Vue
 import Vue from "vue"
 
-import App from "./vue/app.js" 
+// import App from "./vue/app.js" 
+
+import App from "./vue/App.vue"
 
 const app = new Vue({
 	el: '#app',
