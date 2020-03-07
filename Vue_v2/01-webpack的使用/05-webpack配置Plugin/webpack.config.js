@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require("webpack")
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyjswebpackPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
 	entry: './src/main.js',
@@ -57,9 +58,10 @@ module.exports = {
 	},
 	plugins:[
 		new webpack.BannerPlugin('最终解释权归zsg所有'),
-		new htmlWebpackPlugin({
+		new HtmlWebpackPlugin({
 			template:'index.html'
-		})
+		}),
+		new UglifyjswebpackPlugin()
 	],
 	resolve: {
 		// 省略扩展名
