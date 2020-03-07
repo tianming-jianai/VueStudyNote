@@ -48,12 +48,14 @@ module.exports = {
 				}
 			},
 			{
-				test:/\.vue$/,
-				use:['vue-loader']
+				test: /\.vue$/,
+				use: ['vue-loader']
 			}
 		]
 	},
 	resolve: {
+		// 省略扩展名
+		extensions: ['.js', '.css', '.vue'],
 		alias: {
 			//这里的vue$是指以vue结尾，引入vue的地方：import Vue from 'vue' 后面是vue的位置/esm es module
 			'vue$': 'vue/dist/vue.esm.js'
