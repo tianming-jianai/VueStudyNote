@@ -41,3 +41,5 @@ const app = new Vue({
 		App
 	}
 });
+
+document.writeln("<br/>自动部署")
