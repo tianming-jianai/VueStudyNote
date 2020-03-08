@@ -6,7 +6,7 @@ const UglifyjswebpackPlugin = require('uglifyjs-webpack-plugin')
 module.exports = {
 	entry: './src/main.js',
 	output: {
-		path: path.resolve(__dirname, 'dist'), //__dirname上下文获取当前文件路径；resolve是拼接；动态获取路径
+		path: path.resolve(__dirname, '../dist'), //__dirname上下文获取当前文件路径；resolve是拼接；动态获取路径
 		filename: 'bundle.js',
 		// publicPath: 'dist/'
 	},
@@ -56,12 +56,11 @@ module.exports = {
 			}
 		]
 	},
-	plugins:[
+	plugins: [
 		new webpack.BannerPlugin('最终解释权归zsg所有'),
 		new HtmlWebpackPlugin({
-			template:'index.html'
-		}),
-		// new UglifyjswebpackPlugin(),//开发阶段不建议丑化js
+			template: 'index.html'
+		})
 	],
 	resolve: {
 		// 省略扩展名
@@ -70,9 +69,5 @@ module.exports = {
 			//这里的vue$是指以vue结尾，引入vue的地方：import Vue from 'vue' 后面是vue的位置/esm es module
 			'vue$': 'vue/dist/vue.esm.js'
 		}
-	},
-	devServer:{
-		contentBase: './dist',
-		inline: true
 	}
 }
